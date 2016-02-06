@@ -1,4 +1,4 @@
-  {% load staticfiles %}
+{% load staticfiles %}
     <html>
         <head>
             <title>Lina VS The World</title>
@@ -7,17 +7,20 @@
             <link rel="stylesheet" href="{% static 'css/blog.css' %}">
  <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         </head>
-       <body>
-        <div class="page-header">
+        <body>
+            <div class="page-header">
+                {% if user.is_authenticated %}
+                   <a href="{% url 'blog.views.post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                {% endif %}
             <h1><a href="/">Blog</a></h1>
         </div>
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
+                    {% block content %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
-        </div>
-    </body>
+        </body>
     </html>
